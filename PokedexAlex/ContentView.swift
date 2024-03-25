@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let pokemons = getPokemons()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("hola")
+        NavigationView {
+            List(pokemons) { pokemon in
+                NavigationLink {
+                    PokemonDetailView(pokemon: pokemon)
+                    
+                } label: {
+                    HStack {
+                        PokemonCell(pokemon: pokemon)
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 
